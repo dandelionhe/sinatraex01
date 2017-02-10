@@ -1,7 +1,9 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
+require 'slim'
 require 'sass'
 require './song'
+
 
 configure :development do
   DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db")
@@ -22,31 +24,31 @@ get '/set/:name' do
 end
 
 get '/login' do
-  erb :login
+  slim :login
 end
 
 get '/' do
-  erb :home
+  slim :home
 end
 
 get '/about' do
   @page_title= 'All About This Website'
-  erb :about
+  slim :about
 end
 
 get '/contact' do
 
-  erb :contact
+  slim :contact
 end
 
-get('/style.css'){scss :styles}
+get ('/styles.css'){scss :styles}
 
 post '/login' do
   if params[:username] == settings.username && params[:password] == settings.password
     session[:admin] = true
     redirect to('/songs')
   else
-    erb :login
+    slim :login
   end
 end
 
@@ -56,5 +58,5 @@ get '/logout' do
 end
 
 not_found do
-  erb :not_found
+  slim :not_found
 end
