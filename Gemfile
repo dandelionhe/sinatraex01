@@ -5,6 +5,8 @@ gem "sass"
 gem "dm-core"
 gem "dm-migrations"
 gem "thin"
+gem "sinatra-flash"
+gem "pony"
 
 group :production do
   gem "pg"

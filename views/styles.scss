@@ -44,6 +44,18 @@ nav {
   @include tabs ($background: $black, $color: $white);
   font-weight: bold;
 }
+nav a.current{
+  background: red;
+}
 p {
   font: 13px/1.4 $main-font;
+}
+.flash {
+  width: 600px;
+  padding: 5px;
+  font-weight: bold;
+  margin: 20px;
+  background: lighten($red, 60%);
+  color: $red;
+  border: 1px solid $red;
 }
