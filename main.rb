@@ -5,12 +5,15 @@ require 'sass'
 require './song'
 require 'sinatra/flash'
 require 'pony'
+require './sinatra/auth'
+require 'v8'
+require 'coffee-script'
 
 configure :development do
   DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db")
   set :email_address => 'smtp.gmail.com',
       :email_user_name => 'yongzhenghe',
-      :email_password => '3660308he',
+      :email_password => '888',
       :email_domain => 'localhost.localdomain'
 end
 
@@ -22,12 +25,6 @@ configure :production do
       :email_domain => 'heroku.com'
 end
 
-configure do
-  enable :sessions
-  set :username, 'frank'
-  set :password, 'sinatra'
-end
-
 before do
   set_title
 end
@@ -36,19 +33,7 @@ get '/login' do
   slim :login
 end
 
-post '/login' do
-  if params[:username] == settings.username && params[:password] == settings.password
-    session[:admin] = true
-    redirect to ('/songs')
-  else
-    slim :login
-  end
-end
 
-get '/logout' do
-  session.clear
-  redirect to('/login')
-end
 
 get '/' do
   slim :home
@@ -65,6 +50,7 @@ get '/contact' do
 end
 
 get ('/styles.css'){scss :styles}
+get ('/javascripts/application.js'){ coffee :application}
 
 not_found do
   slim :not_found
@@ -104,7 +90,7 @@ helpers do
                 :port => '587',
                 :enable_starttls_auto => true,
                 :user_name => 'yongzhenghesfo',
-                :password => '3660308he',
+                :password => '***',
                 :authentication => :plain,
                 :domain => 'localhost.localdomain'
             }
