@@ -6,11 +6,11 @@ require './song'
 
 
 configure :development do
-  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db")
+  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/recall.db")
 end
 
 configure :production do
-  DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://user:password@hostname/data/mydatabase.db')
+  DataMapper.setup(:default, ENV['DATABASE_URL'])
 end
 
 configure do
