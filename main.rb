@@ -6,12 +6,13 @@ require './song'
 
 
 configure :development do
-  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/recall.db")
+  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db")
 end
 
 configure :production do
-  DataMapper.setup(:default, ENV['DATABASE_URL'])
+  DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_RED_URL'])
 end
+
 
 configure do
   enable :sessions
