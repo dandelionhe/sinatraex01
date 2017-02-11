@@ -59,3 +59,16 @@ p {
   color: $red;
   border: 1px solid $red;
 }
+
+#like {
+  p {
+    font-weight: bold;
+    color: $red;
+  }
+  input {
+    background: $red url(/images/logo.png) 0 2px no-repeat;
+    border: darken($red, 10%) 1px solid;
+    height: 28px;
+    padding-left: 24px;
+  }
+}
