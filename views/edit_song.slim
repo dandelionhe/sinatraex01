@@ -1,7 +1,4 @@
 h1 Edit Song
-
-<h1>Edit Song</h1>
-<form action="/songs/#{@song.id}" method="post">
-  <input type="hidden" name="_method" value="PUT">
-  <%=	 erb :song_form %>
-</form>
+form action="/songs/#{@song.id}" method="post"
+  input type="hidden" name="_method" value="PUT"
+  == slim :song_form

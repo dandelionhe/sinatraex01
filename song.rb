@@ -9,8 +9,8 @@ class Song
   property :length, Integer
   property :released_on, Date
 
-  def released_on=date
-    super Date.strptime(date,'%m/%d/%Y')
+  def released_on=(date)
+    super Date.strptime(date, '%m/%d/%Y')
   end
 
 end
@@ -23,7 +23,7 @@ get '/songs' do
 end
 
 get '/songs/new' do
-  halt(401, 'Not Authorized') unless session[:admin]
+  halt(401, "Not Authorized") unless session[:admin]
   @song = Song.new
   slim :new_song
 end
@@ -45,7 +45,7 @@ end
 
 put '/songs/:id' do
   song = Song.get(params[:id])
-  song.update(params[:id])
+  song.update(params[:song])
   redirect to("/songs/#{song.id}")
 end
 

@@ -1,13 +1,8 @@
-<h1>Songs</h1>
-<a href="/songs/new">Create a new song</a>
-<%	 if @songs.any? %>
-<ul id="songs">
-  <% @songs.each do |song| %>
-      <li>
-        <a href="/songs/<%= song.id %>"><%=	 song.title %></a>
-      </li>
-  <%	 end %>
-</ul>
-<%	 else %>
-      <p>No songs have been created yet!</p>
-<%	 end %>
+h1 Songs
+a href="/songs/new" Create a new song
+- if @songs.any?
+    ul#songs
+      -@songs.each do |song|
+        li <a href="/songs/#{song.id}">#{song.title}</a>
+- else
+    p No songs have been created yet!
